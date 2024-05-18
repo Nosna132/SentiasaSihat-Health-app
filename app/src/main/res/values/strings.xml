@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">SentiasaSihat</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">SentiasaSihat</string>
+    <string name="nav_header_subtitle">SentiasaSihatINFO@gmail.my.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="na_textview">Nutrition Advice</string>
+    <string name="hs_textview">Health Support</string>
+    <string name="fr_textview">Fitness Routines</string>
+    <string name="title1textview">Your Health Helper!</string>
+    <string name="bdyweighttextview">Bodyweight Exercises</string>
+    <string name="Cardextextview">Cardio Exercises</string>
+    <string name="Pilatesextextview">Pilates Exercises</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bodyweightdes">please follow the instruction\nof the video.\nthis will make your health status\nmore accurate.</string>
+    <string name="calburnview">Total Burn: 500 kcal</string>
+    <string name="completebtn">Complete</string>
+
+    <!-- Profile -->
+    <string name="Age">Age</string>
+    <string name="BMI">BMI</string>
+    <string name="Weight">Weight</string>
+    <string name="Height">Height</string>
+    <string name="HealthStatus">Your Daily Health Status</string>
+    <string name="calories">Calories</string>
+    <string name="workoutDuration">Workout Duration</string>
+    <string name="TotalCalBurn">Total Calories Burn</string>
+    <string name="Feeling_status">How are you feeling</string>
+
+    <!-- Edit Profile -->
+    <string-array name="spinnerGender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string name="btnSave">Save</string>
+    <string name="BOD">Birth Date</string>
+
+    <!-- View More Info -->
+    <string name="BMI_Info">BMI Info</string>
+    <string name="BMI_">BMI</string>
+    <string name="Mass_class">Body Mass Class</string>
+    <string name="BMI_colour">BMI Colour</string>
+    <string name="BMI_1">&lt;18.5</string>
+    <string name="BMI_2">18.5 – 24.9</string>
+    <string name="BMI_3">>25.0</string>
+    <string name="Mass_class1">Underweight</string>
+    <string name="Mass_class2">Healthy</string>
+    <string name="Mass_class3">Overweight</string>
+    <string name="BMI_Blue">Blue</string>
+    <string name="BMI_Green">Green</string>
+    <string name="BMI_Red">Red</string>
+
+    <!-- Mental Health support list -->
+    <string name="Mental_health_title">Mental Health Support</string>
+
+    <!-- Nutrition -->
+    <string name="nutrition">Nutrition Advise</string>
+    <string name="breakfast">Breakfast :</string>
+    <string name="lunch">Lunch :</string>
+    <string name="dinner">Dinner :</string>
+    <string name="total_calories">Total Calories: %d</string>
+    <string name="totalCalories">Total Calories: 0</string>
+
+    <!-- Nutrition = Breakfast -->
+    <string name="underweight_breakfast_topic">Energizing Morning Start</string>
+    <string name="underweight_breakfast_recipe">Whole grain toast with avocado and sliced tomatoes: Toast whole grain bread and top with mashed avocado and sliced tomatoes. Season with salt, pepper, and a squeeze of lemon juice.</string>
+    <string name="normal_weight_breakfast_topic">Nourishing Breakfast Options</string>
+    <string name="normal_weight_breakfast_recipe">Oatmeal topped with sliced bananas, almonds, and a drizzle of honey: Cook oatmeal and top with sliced bananas, almonds, and a drizzle of honey.</string>
+    <string name="overweight_breakfast_topic"> Balanced Breakfast Choices</string>
+    <string name="overweight_breakfast_recipe">Vegetable omelette with whole grain toast: Make an omelette with mixed vegetables and serve with whole grain toast.</string>
+    <!-- Nutrition = Lunch -->
+    <string name="underweight_lunch_topic"> Nutrient-Dense Midday Meal</string>
+    <string name="underweight_lunch_recipe">Quinoa salad with chickpeas, mixed vegetables, and a lemon-tahini dressing: Cook quinoa and toss with chickpeas, mixed vegetables, and a homemade lemon-tahini dressing.</string>
+    <string name="normal_weight_lunch_topic">Balanced Lunch Ideas</string>
+    <string name="normal_weight_lunch_recipe">Grilled chicken Caesar salad with whole grain croutons: Grill chicken and serve over a Caesar salad with whole grain croutons.</string>
+    <string name="overweight_lunch_topic">Healthy Lunch Alternatives</string>
+    <string name="overweight_lunch_recipe">Grilled vegetable wrap with hummus and a side of fruit salad: Grill vegetables and wrap them in a whole grain tortilla with hummus. Serve with a side of fruit salad.</string>
+    <!-- Nutrition = Dinner -->
+    <string name="underweight_dinner_topic">Balanced Evening Fare</string>
+    <string name="underweight_dinner_recipe">Baked salmon with quinoa and roasted vegetables: Season salmon fillets and bake. Serve with cooked quinoa and roasted vegetables.</string>
+    <string name="normal_weight_dinner_topic">Wholesome Dinner Delights</string>
+    <string name="normal_weight_dinner_recipe">Grilled salmon with quinoa pilaf and steamed asparagus: Grill salmon and serve with quinoa pilaf and steamed asparagus.</string>
+    <string name="overweight_dinner_topic">Light and Flavorful Dinner Ideas</string>
+    <string name="overweight_dinner_recipe">Vegetable and tofu curry with brown rice: Make a vegetable and tofu curry and serve with brown rice.</string>
+
+    <string name="logo">SentiasaSihat</string>
+    <string name="mister">Mr.</string>
+    <string name="miss">Ms.</string>
+    <string name="username">Username</string>
+    <string name="mail">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgotPassword">Forgot Password?</string>
+    <string name="signUp">Sign Up</string>
+    <string name="noAcc">Dont have an account?  Sign Up</string>
+    <string name="haveAcc">Already have an account?  Login</string>
+    <string name="birth">Birth (YYYY-MM-DD)</string>
+    <string name="weight">Weight (kg)</string>
+    <string name="height">Height (kg)</string>
+    <string-array name="gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+    <string name="welcome">Welcome to SentiasaSihat!\nLet\'s get started on your wellness journey.</string>
+    <string name="start">Start</string>
+    <string name="mail_forgot">Enter your mail to reset your password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="submit">Submit</string>
+    <string name="back">Back</string>
+    <string name="select_photo">Select Photo</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+</resources>

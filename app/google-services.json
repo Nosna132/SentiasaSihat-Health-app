@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "307840905177",
+    "firebase_url": "https://sentiasasihatdb-default-rtdb.firebaseio.com",
+    "project_id": "sentiasasihatdb",
+    "storage_bucket": "sentiasasihatdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307840905177:android:1e3e8046200cee4c46b3c8",
+        "android_client_info": {
+          "package_name": "bait2073.mad.assignments"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxUk2NoTbm30E1ikvoFpb4JzwfmY0sOjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

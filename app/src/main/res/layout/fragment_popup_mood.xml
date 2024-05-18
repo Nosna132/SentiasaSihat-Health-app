@@ -1,0 +1,72 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    tools:context="ui.profile.Popup_mood_Fragment">
+
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Feeling_status"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/Emoji1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/dead"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <ImageView
+        android:id="@+id/Emoji2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/sad"
+        app:layout_constraintBottom_toBottomOf="@+id/Emoji1"
+        app:layout_constraintStart_toEndOf="@+id/Emoji1"
+        app:layout_constraintTop_toTopOf="@+id/Emoji1" />
+
+    <ImageView
+        android:id="@+id/Emoji3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/indifferent"
+        app:layout_constraintBottom_toBottomOf="@+id/Emoji2"
+        app:layout_constraintStart_toEndOf="@+id/Emoji2"
+        app:layout_constraintTop_toTopOf="@+id/Emoji2" />
+
+    <ImageView
+        android:id="@+id/Emoji4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/happiness"
+        app:layout_constraintBottom_toBottomOf="@+id/Emoji3"
+        app:layout_constraintStart_toEndOf="@+id/Emoji3"
+        app:layout_constraintTop_toTopOf="@+id/Emoji3" />
+
+    <ImageView
+        android:id="@+id/Emoji5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/happy"
+        app:layout_constraintBottom_toBottomOf="@+id/Emoji4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Emoji4"
+        app:layout_constraintTop_toTopOf="@+id/Emoji4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navView">
+
+    <item
+        android:id="@+id/nav_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:icon="@drawable/homeicon"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_nutrition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:icon="@drawable/health"
+        android:title="Nutrition Advice" />
+
+    <item
+        android:id="@+id/nav_fitnessmain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:icon="@drawable/dumbbell"
+        android:title="Fitness Routines" />
+
+    <item
+        android:id="@+id/nav_mentalHealthSupport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:icon="@drawable/heart"
+        android:title="Health Support" />
+
+    <item
+        android:id="@+id/nav_profileFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:icon="@drawable/profileicon"
+        android:title="Profile" />
+</menu>
