@@ -25,13 +25,6 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_nav_home_to_testuse"
-            app:destination="@id/nav_testuse"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
-        <action
             android:id="@+id/action_nav_home_to_nav_mentalHealthSupport"
             app:destination="@id/nav_mentalHealthSupport"
             app:enterAnim="@anim/slide_in_right"
@@ -149,15 +142,6 @@
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
-        android:id="@+id/nav_testuse"
-        android:name="bait2073.mad.assignments.ui.fitness.testuse"
-        android:label="fragment_testuse"
-        tools:layout="@layout/fragment_testuse"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_left"
-        app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right"/>
-    <fragment
         android:id="@+id/nav_mentalHealthSupport"
         android:name="bait2073.mad.assignments.ui.mentalsupport.MentalHealthSupport"
         android:label="SentiasaSihat"
@@ -204,6 +188,4 @@
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right"/>
-
-
 </navigation>

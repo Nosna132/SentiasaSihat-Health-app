@@ -78,7 +78,21 @@ class NotificationFragment : Fragment() {
     private fun cancelAlarm() {
         // Cancel alarm work
         WorkManager.getInstance(requireContext()).cancelAllWorkByTag("dailyWorkout")
-        Toast.makeText(requireContext(), "Alarm Cancelled", Toast.LENGTH_SHORT).show()
+
+        // Remove alarm time from Firebase
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            val alarmRef = database.getReference("users").child(userId).child("alarms")
+            alarmRef.removeValue()
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Alarm Cancelled", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(), "Failed to cancel alarm", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(requireContext(), "User not logged in!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setAlarm() {

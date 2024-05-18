@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home,
                 R.id.nav_fitnessmain,
                 R.id.nav_nutrition,
-                R.id.nav_testuse,
                 R.id.nav_logpage,
                 R.id.nav_profileFragment,
                 R.id.nav_mentalHealthSupport
@@ -83,12 +82,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_nutrition -> {
                     // Navigate to the NutritionFragment
                     navController.navigate(R.id.nav_nutrition)
-                    true
-                }
-
-                R.id.nav_testuse -> {
-                    // Navigate to the TestUseFragment
-                    navController.navigate(R.id.nav_testuse)
                     true
                 }
 
