@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
 import androidx.work.Worker
@@ -31,6 +32,7 @@ class NotificationWorker(context: Context, params: WorkerParameters) : Worker(co
 
         notificationManager.notify(1001, notification)
 
+        Log.d("NotificationWorker", "Notification sent at: ${System.currentTimeMillis()}")
         return Result.success()
     }
 

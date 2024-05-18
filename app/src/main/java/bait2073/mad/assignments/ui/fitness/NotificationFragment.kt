@@ -1,16 +1,20 @@
 package bait2073.mad.assignments.ui.fitness
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import bait2073.mad.assignments.NotificationWorker
 import bait2073.mad.assignments.databinding.FragmentNotificationBinding
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -31,6 +35,18 @@ class NotificationFragment : Fragment() {
     private val database: FirebaseDatabase = Firebase.database
     private val auth: FirebaseAuth = Firebase.auth
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            Log.d("NotificationFragment", "Notification permission granted")
+            // Permission is granted, proceed with setting up the alarm
+        } else {
+            Log.d("NotificationFragment", "Notification permission denied")
+            Toast.makeText(requireContext(), "Notification permission is required to set alarms", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +59,9 @@ class NotificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Check and request notification permission
+        checkNotificationPermission()
+
         // Observe changes in selected time and update UI accordingly
         viewModel.selectedTime.observe(viewLifecycleOwner, Observer { time ->
             binding.selectedTime.text = time
@@ -54,6 +73,27 @@ class NotificationFragment : Fragment() {
         binding.selectTimeBtn.setOnClickListener { showTimePicker() }
         binding.setAlarmBtn.setOnClickListener { setAlarm() }
         binding.cancelAlarmBtn.setOnClickListener { cancelAlarm() }
+    }
+
+    private fun checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            when {
+                ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    Log.d("NotificationFragment", "Notification permission already granted")
+                    // Permission is already granted, proceed with setting up the alarm
+                }
+                shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
+                    Toast.makeText(requireContext(), "Notification permission is required to set alarms", Toast.LENGTH_SHORT).show()
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+                else -> {
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+            }
+        }
     }
 
     private fun fetchSavedAlarmTime() {
@@ -77,6 +117,7 @@ class NotificationFragment : Fragment() {
 
     private fun cancelAlarm() {
         // Cancel alarm work
+        WorkManager.getInstance(requireContext()).cancelAllWorkByTag("oneTimeWorkout")
         WorkManager.getInstance(requireContext()).cancelAllWorkByTag("dailyWorkout")
 
         // Remove alarm time from Firebase
@@ -95,6 +136,24 @@ class NotificationFragment : Fragment() {
         }
     }
 
+    private fun calculateInitialDelay(alarmTime: String): Long {
+        val dateFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        val currentTime = Calendar.getInstance()
+        val alarmCalendar = Calendar.getInstance().apply {
+            time = dateFormat.parse(alarmTime)!!
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+            if (before(currentTime)) {
+                add(Calendar.DAY_OF_MONTH, 1)
+            }
+        }
+        val initialDelay = alarmCalendar.timeInMillis - currentTime.timeInMillis
+        Log.d("NotificationFragment", "Current time: ${currentTime.time}")
+        Log.d("NotificationFragment", "Alarm time: ${alarmCalendar.time}")
+        Log.d("NotificationFragment", "Initial delay: $initialDelay milliseconds")
+        return initialDelay
+    }
+
     private fun setAlarm() {
         viewModel.selectedTime.value?.let { selectedTime ->
             // Save alarm time to Firebase
@@ -102,18 +161,39 @@ class NotificationFragment : Fragment() {
             if (userId != null) {
                 val alarmRef = database.getReference("users").child(userId).child("alarms")
                 alarmRef.setValue(selectedTime)
-                Toast.makeText(requireContext(), "Alarm set Successfully", Toast.LENGTH_SHORT).show()
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Alarm set Successfully", Toast.LENGTH_SHORT).show()
 
-                // Schedule NotificationWorker for periodic work
-                val dailyWorkRequest = PeriodicWorkRequestBuilder<NotificationWorker>(24, TimeUnit.HOURS)
-                    .addTag("dailyWorkout")
-                    .build()
+                        // Calculate initial delay
+                        val initialDelay = calculateInitialDelay(selectedTime)
 
-                WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
-                    "dailyWorkout",
-                    ExistingPeriodicWorkPolicy.REPLACE,
-                    dailyWorkRequest
-                )
+                        // Schedule one-time work request for the initial notification
+                        val oneTimeWorkRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
+                            .setInitialDelay(initialDelay, TimeUnit.MILLISECONDS)
+                            .addTag("oneTimeWorkout")
+                            .build()
+
+                        WorkManager.getInstance(requireContext()).enqueueUniqueWork(
+                            "oneTimeWorkout",
+                            ExistingWorkPolicy.REPLACE,
+                            oneTimeWorkRequest
+                        )
+
+                        // Schedule periodic work request for subsequent notifications
+                        val dailyWorkRequest = PeriodicWorkRequestBuilder<NotificationWorker>(24, TimeUnit.HOURS)
+                            .setInitialDelay(initialDelay + TimeUnit.HOURS.toMillis(24), TimeUnit.MILLISECONDS)
+                            .addTag("dailyWorkout")
+                            .build()
+
+                        WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
+                            "dailyWorkout",
+                            ExistingPeriodicWorkPolicy.REPLACE,
+                            dailyWorkRequest
+                        )
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(requireContext(), "Failed to set alarm", Toast.LENGTH_SHORT).show()
+                    }
             } else {
                 Toast.makeText(requireContext(), "User not logged in!", Toast.LENGTH_SHORT).show()
             }
